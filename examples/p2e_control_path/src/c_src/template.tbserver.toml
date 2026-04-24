@@ -1,0 +1,5 @@
+# this file in the TBSERVER_ETC env path
+# path of tbservice.toml, should be the vdbg design workspace
+tbservice = "YOUR_CASE_HOME"
+db = "YOUR_CASE_HOME/vvac.dir/db/"
+rtcfg = "YOUR_CASE_HOME/vvac.dir/"

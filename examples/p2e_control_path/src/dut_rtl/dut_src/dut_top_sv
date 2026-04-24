@@ -1,0 +1,60 @@
+module dut_top(arstn,clk  );
+    input bit clk;
+    input arstn;
+
+    parameter  CYCLE_RESET_START = 16 ;
+    parameter  CYCLE_RESET_END   = CYCLE_RESET_START +8 ;
+    parameter  CYCLE_STOP        = CYCLE_RESET_END + 36 ;
+
+    reg dut_rstn = 0 ;
+    reg [15:0] cycle_cnt = 'd0 ;
+
+    wire dut_done ;
+    reg  dut_done_reg ;
+
+    //assign flag_done = dut_done_reg & (cycle_cnt > CYCLE_STOP +1);
+    assign flag_done = dut_done_reg ;
+
+    always@(posedge clk) begin 
+        if(arstn == 0) begin 
+            dut_done_reg <= 'd0;
+        end else begin 
+            if(dut_done == 1) dut_done_reg <= 'd1;
+        end
+    end 
+    import "DPI-C" context function void dut_notice (input bit [31:0] h2s_data);  
+    // dut_notice used to info SW //
+
+    always@(posedge clk) begin 
+        if(arstn == 0) begin 
+            dut_rstn <= 0;
+            cycle_cnt <= 0;
+        end else begin 
+            if(cycle_cnt == CYCLE_RESET_START  ) begin 
+                dut_rstn <= 0;
+            end if(cycle_cnt == CYCLE_RESET_END  ) begin 
+                dut_rstn <= 1;
+            end if(dut_done == 1  ) begin 
+                dut_rstn <= 0;
+            end 
+            
+            if(cycle_cnt == 16'hffff) begin 
+                cycle_cnt <= cycle_cnt ;
+            end else begin 
+                cycle_cnt <= cycle_cnt  + 1;
+            end
+        end 
+
+        if (flag_done) begin 
+            dut_notice(cycle_cnt);
+        end 
+    end 
+
+
+    dut u_dut (
+        .clk (clk) ,
+        .rstn (dut_rstn),
+        .dut_done (dut_done)
+    );
+endmodule
+

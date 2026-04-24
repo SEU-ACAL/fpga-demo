@@ -1,0 +1,6 @@
+VERSION += 1.0
+DEVICE += P2E
+BOARD += {"index": 0, "type": "FOUR_CHIP_BOARD",  "SN": "RRD00000026AFE0", "CLK": 0}
+
+# DDR4 daughter-card
+CARD += {"type":"XRAM_16G_V1", "connector":"0.A.3"}

@@ -1,0 +1,4 @@
+set FID [dump -file board.fsdb -type FSDB]
+dump -add sim_top -depth 0 -fsdb_opt +all -fid $FID
+dump -enable -fid $FID
+run

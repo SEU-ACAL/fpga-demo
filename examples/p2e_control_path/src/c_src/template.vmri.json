@@ -1,0 +1,9 @@
+{
+    "shared_memory" : {
+        "designPath" :  "YOUR_CASE_HOME/vcom_sim/",
+        "name" : "shm_vmri",
+        "size" : 67108864,
+        "timeoutMs" : 10000,
+        "tag" : 0
+    }
+}

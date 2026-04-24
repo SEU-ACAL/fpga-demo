@@ -1,0 +1,9 @@
+{
+    "shared_memory" : {
+        "designPath" :  "/public/pingh/for_lauraw/vvac_v2.si/TestCase/vdbg_vvac_import_single_touch_Sout_v2//vcom_sim/",
+        "name" : "shm_vmri",
+        "size" : 67108864,
+        "timeoutMs" : 10000,
+        "tag" : 0
+    }
+}

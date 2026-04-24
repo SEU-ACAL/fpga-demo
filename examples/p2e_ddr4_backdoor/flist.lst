@@ -1,0 +1,7 @@
+./src/user_ctrl/axi_user_ctrl_pbrs.v
+./src/user_ctrl/compare_8bit.v
+./src/user_ctrl/prbs_create.v
+./src/top/pcie3_ddr4_vcom.sv 
+./src/xepic_ddr4_dc1_stub.sv
+#/build/testcase_data/big_files_do_not_sumbit_to_git/NNMF_pcie3_ddr4_emode_pmode/netlist_macro_packages/xepic_ddr4_dc1/stub/xepic_ddr4_dc1_stub.sv
+#$::env(HPE_HOME)/netlist_macro_packages/xepic_ddr4_dc1/stub/xepic_ddr4_dc1_stub.sv

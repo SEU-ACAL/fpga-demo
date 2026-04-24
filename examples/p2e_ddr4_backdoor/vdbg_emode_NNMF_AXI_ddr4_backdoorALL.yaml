@@ -1,0 +1,48 @@
+name: vdbg_NewNetlistMacro_P2/vdbg_emode_NNMF_AXI_ddr4_backdoorALL
+priority: C3
+memory: 45
+by_suite: vdbg_pmode_69
+author: chengqings
+env:
+ - set: __XEPIC_NEW_NETLIST_MACRO_FLOW
+prepare:
+- .
+stages:
+- name: run verdi
+  type: run
+  cmd: $PYTHON $VEDIT %file dut_top
+  file: vedit_compile.tcl
+  timeout: 1000
+- name: run synplify
+  type: run
+  cmd: $SYNPLIFY -batch syn.tcl
+  file: syn.tcl
+  timeout: 3000
+- name: run vcom
+  type: run
+  cmd:  $CSH %file
+  file: run_vcom.csh
+  timeout: 7200
+- name: final check
+  type: run
+  cmd: $CSH -f /build/testcase_data/vdbg/simv/gene_checkist.csh
+  file: /build/testcase_data/vdbg/simv/gene_checkist.csh
+  timeout: 1000
+- name: postcheck
+  type: checkist
+  timeout: 300
+- name: check report
+  type: check
+  method: reg_diff
+  output: case.result
+  golden: case.ref
+  regs:
+    - '(.*)'
+collect:
+- run.log
+- case.ref
+- case.result
+- case.diff
+- case.pass
+- case.fail
+

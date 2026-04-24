@@ -1,0 +1,79 @@
+proc add_file_lst {file_lst {normalize_paths 0}} {
+	global RTL_PATH;
+	global DEVICE_FAMILY;
+	global SCRIPT_PATH;
+	global PACKAGE;
+	global GRADE;
+	global TOP_NAME;
+	
+	set pwd [pwd]
+	puts "BEGIN add_file_lst synplify_procs:file_lst='$file_lst' pwd='$pwd'"
+	if [catch {open $file_lst r} fileId] {
+		puts stderr "Cannot open '$file_lst'"
+	} else {
+		puts "successful open file: '$file_lst'"
+		foreach line [split [read $fileId] \n] {
+			if ![regexp {^//} $line] {
+			if ![regexp {^#} $line] {
+				if [regexp {^(.*)\.vh} $line verilog_hdr_file no_extension] then {
+					set verilog_hdr_file [subst $verilog_hdr_file];
+					set no_extension     [subst $no_extension];
+
+					if {$normalize_paths} {
+						set verilog_hdr_file [file normalize $verilog_hdr_file];
+						set no_extension     [file normalize $no_extension];
+					}
+
+					set syn_file_type "-verilog";
+					add_file $syn_file_type $verilog_hdr_file;
+					puts "add_file $syn_file_type $verilog_hdr_file;"
+					puts stderr "Found an RTL file: '$syn_file_type' '$verilog_hdr_file'";
+
+				} elseif [regexp {^(.*)\.v} $line verilog_file no_extension] then {
+                                        set verilog_file [subst $verilog_file];
+                                        set no_extension [subst $no_extension];
+
+                                        if {$normalize_paths} {
+                                                set verilog_file [file normalize $verilog_file];
+                                                set no_extension [file normalize $no_extension];
+                                        }
+                                
+                                        set syn_file_type "-verilog";
+                                        add_file $syn_file_type $verilog_file;
+                                        puts "add_file $syn_file_type $verilog_file;"
+                                        puts stderr "Found an RTL file: '$syn_file_type' '$verilog_file'";
+				} elseif [regexp {^(.*)\.sv} $line sverilog_file no_extension] then {
+                                        set sverilog_file [subst $sverilog_file];
+                                        set no_extension [subst $no_extension];
+
+                                        if {$normalize_paths} { 
+                                                set sverilog_file [file normalize $sverilog_file];
+                                                set no_extension [file normalize $no_extension];
+                                        } 
+
+                                        set sysv_syn_file_type "-verilog";
+                                        add_file $sysv_syn_file_type $sverilog_file;
+                                        puts "add_file $sysv_syn_file_type $sverilog_file;"
+                                        puts stderr "Found an RTL file: '$sysv_syn_file_type' '$sverilog_file'";
+				} elseif [regexp {\S+\.lst} [subst $line] lst_filename] then {
+					add_file_lst [subst $lst_filename] $normalize_paths
+				} elseif [regexp {^(.*)\.ngc} $line verilog_file no_extension] then {
+                                        set verilog_file [subst $verilog_file];
+                                        set no_extension [subst $no_extension];
+
+                                        if {$normalize_paths} {
+                                                set verilog_file [file normalize $verilog_file];
+                                                set no_extension [file normalize $no_extension];
+                                        }
+
+                                        set syn_file_type "-ngc";
+                                        add_file $syn_file_type $verilog_file;
+                                        puts "add_file $syn_file_type $verilog_file;"
+                                        puts stderr "Found an NGC file: '$syn_file_type' '$verilog_file'";
+				}
+			}
+			}}}
+	close $fileId
+	puts "END add_file_lst: file_lst='$file_lst'";
+
+}

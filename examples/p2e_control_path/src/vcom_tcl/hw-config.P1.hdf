@@ -1,0 +1,3 @@
+VERSION += 1.0
+DEVICE += P1
+BOARD += {"index": 0, "type": "TWO_CHIP_BOARD",  "SN": "RRD00000026AFE0", "CLK": 0}

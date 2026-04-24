@@ -1,0 +1,3 @@
+set FID [dump -file board.fsdb -type FSDB]
+dump -add vcs_tb -depth 0 -fid $FID
+dump -enable -fid $FID
