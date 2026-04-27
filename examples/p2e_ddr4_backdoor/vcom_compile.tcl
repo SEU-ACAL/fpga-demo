@@ -1,5 +1,6 @@
 set cur_path [pwd]
 puts "cur_path: ${cur_path}"
+set project_dir "$::env(PROJECT_DIR)"
 #set nnmf_path "/build/testcase_data/big_files_do_not_sumbit_to_git/NNMF_pcie3_ddr4_emode_pmode/netlist_macro_packages"
 set nnmf_path "$::env(HPE_HOME)/netlist_macro_packages"
 #set nnmf_path "/build/testcase_data/big_files_do_not_sumbit_to_git/NNMF/netlist_macro_packages_P2_emode_noOBUF_FixXDC/netlist_macro_packages"
@@ -8,7 +9,7 @@ netlistmacro -instance pcie3_ddr4.chip0_wrapper -package ${nnmf_path}/xepic_ddr4
 
 design_load -top pcie3_ddr4
 
-emulator_spec -add "file hw-config.hdf"
+emulator_spec -add "file ${project_dir}/hw-config.hdf"
 emulator_util -add {default 70}
 
 

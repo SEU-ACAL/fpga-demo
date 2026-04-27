@@ -1,0 +1,5 @@
+*.rpt
+*.log
+rev_1/
+fpgaCompDir/
+out/
