@@ -53,3 +53,4 @@ vcom "$SCRIPT_DIR/vcom_compile.tcl"
 # ============================================================================
 test -d fpgaCompDir
 make -C fpgaCompDir all
+

@@ -3,3 +3,5 @@
 rev_1/
 fpgaCompDir/
 out/
+*.sh.swp
+backdoor_read.result

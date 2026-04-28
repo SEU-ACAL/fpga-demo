@@ -22,7 +22,9 @@ OUT_DIR="${OUT_DIR:-$SCRIPT_DIR/out}"
 source "$SCRIPT_DIR/sourceme.sh"
 command -v vdbg >/dev/null
 test -d "$OUT_DIR"
+
 cd "$OUT_DIR"
+cp "$SCRIPT_DIR/hw-config.hdf" "$OUT_DIR"
 
 # ============================================================================
 # Step 5: Board Debug - Load bitstream and run on board
