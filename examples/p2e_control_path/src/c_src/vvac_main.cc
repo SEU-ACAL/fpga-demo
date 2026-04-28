@@ -90,8 +90,8 @@ void test_dpic()
 //    vdbg_exec("hw_server .");
 //    vdbg_exec("download");
     vvac::ICtbMgr *ctb_ = vvac::CtbBuilder::create();
-    auto ret = ctb_->init("P0","/public/pingh/for_lauraw/vvac_v2.si/TestCase/vdbg_vvac_import_single_touch_Sout_v2//vvac.dir",
-                               "/public/pingh/for_lauraw/vvac_v2.si/TestCase/vdbg_vvac_import_single_touch_Sout_v2/" );
+    auto ret = ctb_->init("P0","/home/wanghui/Code/fpga-demo/examples/p2e_control_path/",
+                               "/home/wanghui/Code/fpga-demo/examples/p2e_control_path//vvacDir/runtimeDir/rtcfg" );
     if (ret) {
         //svSetScope(svGetScopeFromName("vvac_top"));
 
@@ -104,10 +104,10 @@ void test_dpic()
         std::cout << _YELLOW << "===TEST FINISHED===" << _CLEAR << std::endl;
 
         ctb_->quit();
-        FILE *fp_done = NULL;
-        fp_done = fopen("/public/pingh/for_lauraw/vvac_v2.si/TestCase/vdbg_vvac_import_single_touch_Sout_v2//vcom_sim/c_code_done.txt", "w+");
+//        FILE *fp_done = NULL;
+//        fp_done = fopen("/home/wanghui/Code/fpga-demo/examples/p2e_control_path//vcom_sim/c_code_done.txt", "w+");
         std::cout << _YELLOW << "===NOTICE VCS DONE ===" << _CLEAR << std::endl;
-        fclose(fp_done);
+//        fclose(fp_done);
     } else {
         std::cout << "CTB init failed!" << std::endl;
     }

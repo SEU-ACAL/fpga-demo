@@ -1,0 +1,37 @@
+# Build output directory
+out/
+
+# Build artifacts
+*.db
+*.log
+*.vm
+*.v
+*.txt
+*.json
+*.rpt
+*.f
+*.dbg
+*.itm
+*.toc
+
+# Build directories
+fpgaCompDir/
+vcomMemDir/
+vcomMemoryConstPropDir/
+config_dir/
+vvacDir/
+vvac.tmp/
+work_lib/
+vcom_sim/
+FUN_GROUP_MEM_INFO/
+STA_Reports/
+NetlistOptFC/
+
+# Hidden build files
+.clockModuleName
+.design_info
+build/
+
+# Generated hardware config
+hw-config-by-auto-cabling.hdf
+hw-config-user-defined.json

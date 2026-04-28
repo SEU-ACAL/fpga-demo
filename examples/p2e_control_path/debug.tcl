@@ -1,19 +1,24 @@
-#!/usr/bin/env tclsh
+# Control Path Example - Basic signal control and monitoring
+
+set script_dir [file dirname [file normalize [info script]]]
 
 design .
 hw_server .
 download
-#set_vrm -on -relocation
-#source /build/testcase_data/vdbg/mfb/relocationdownload.tcl
 
-puts "run tester"
-set pid_c [exec csh ./run_c_test.csh &]
-puts "C id: $pid_c"
-set fi [open pid.vvac w+]
-puts $fi $pid_c
-close $fi
+puts "========== Reset Control =========="
+# Assert reset
+force rstn 0
+puts "Reset asserted: [get_value rstn]"
 
-puts "run 20000 rclk"
-run 20000rclk
-puts "test finish"
-#exit
+run 10rclk
+
+# Deassert reset
+force rstn 1
+puts "Reset deasserted: [get_value rstn]"
+
+run 100rclk
+
+puts "========== Test Complete =========="
+
+exit
