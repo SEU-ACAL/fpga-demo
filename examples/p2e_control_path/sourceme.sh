@@ -9,7 +9,21 @@
 export HPEC_HOME=/home/x-epic/hpe-24.12.01.s008
 
 # Source HPE setup script (sets VCOM_HOME, VDBG_HOME, VSYN_HOME, etc.)
-source $HPEC_HOME/.setup.sh
+# source $HPEC_HOME/.setup.sh
+# export PATH="$HPEC_HOME"/bin:"$PATH"
+export VCOM_HOME="$HPEC_HOME"
+export VDBG_HOME="$HPEC_HOME"
+export VSYN_HOME="$HPEC_HOME"
+export VVAC_HOME="$HPEC_HOME"
+export XRAM_HOME="$HPEC_HOME"/public/xram
+export DBGIP_HOME="$HPEC_HOME"/share/pnr/dbg_ip
+export HPE_HOME="$HPEC_HOME"
+export XEPIC_IP_HOME="$HPE_HOME/netlist_macro_packages"
+export XEPIC_VTECH_HOME="$HPE_HOME"/share/verilog
+
+# if [[ -f "$HPEC_HOME/platform/linux64/config/vrm_user_command.rc" ]]; then
+#   source "$HPEC_HOME/platform/linux64/config/vrm_user_command.rc" &>/dev/null
+# fi
 
 # Vivado tool paths
 export VIVADO_PATH=/home/tools/vivado/Vivado/2022.2

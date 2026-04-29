@@ -5,7 +5,7 @@ pkgs.mkShell {
 
   buildInputs = with pkgs; [
     cmake
-    gcc
+    gcc8
     gnumake
   ];
 

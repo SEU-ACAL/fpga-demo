@@ -27,12 +27,6 @@ echo "Running VVAC..."
 rm -rf config_dir && cp -rf ./src/config_dir ./
 vvac -bc -f ./src/dut_rtl/dut_src/flist.lst -top dut_top | tee vvac.log
 
-echo "Running VGEN2..."
-# Temporarily clear LD_LIBRARY_PATH to avoid library conflicts with cmake
-unset LD_LIBRARY_PATH
-vgen2 -d $(pwd)/vvacDir/runtime.dbdir | tee vgen2.log
-# Re-source environment to restore LD_LIBRARY_PATH if needed
-source "$SCRIPT_DIR/sourceme.sh"
 
 # ============================================================================
 # Step 2: VSYN - Synthesis
