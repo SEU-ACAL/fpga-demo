@@ -10,7 +10,7 @@ export HPEC_HOME=/home/x-epic/hpe-24.12.01.s008
 
 # Source HPE setup script (sets VCOM_HOME, VDBG_HOME, VSYN_HOME, etc.)
 # source $HPEC_HOME/.setup.sh
-# export PATH="$HPEC_HOME"/bin:"$PATH"
+export PATH="$HPEC_HOME"/bin:"$PATH"
 export VCOM_HOME="$HPEC_HOME"
 export VDBG_HOME="$HPEC_HOME"
 export VSYN_HOME="$HPEC_HOME"
@@ -32,6 +32,7 @@ export PATH=$VIVADO_PATH/gnu/microblaze/lin/bin:$PATH
 
 # Additional tool paths
 export PATH=$HPE_HOME/tools/xwave/bin:$PATH
+export PATH=$HPE_HOME/tools/gcc-8.3.0/cmake-3.26.5/bin:$PATH
 
 # License configuration
 export RLM_LICENSE=5053@192.168.99.15

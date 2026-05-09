@@ -35,3 +35,5 @@ build/
 # Generated hardware config
 hw-config-by-auto-cabling.hdf
 hw-config-user-defined.json
+designInfo
+nohup.out
