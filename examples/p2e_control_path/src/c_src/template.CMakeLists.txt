@@ -9,22 +9,11 @@ set(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -g2 -ggdb")
 set(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall")
 set(VCTBLIB_PATH YOUR_CASE_HOME/vvacDir/runtimeDir/lib/lib_arm/)
 
-option(_ARM_ "SET TARGET RUN ON BOARD" ON)
-if(_ARM_)
-    add_definitions(-D_ARM_)
-    find_library(
-      VCTB_LIB
-      NAMES libvCtb.so
-      PATHS ${VCTBLIB_PATH}/)
-endif()
-
-if(_VCS_)
-    add_definitions(-D_VCS_)
-    find_library(
-      VCTB_LIB
-      NAMES libvCtb.so
-      PATHS ${VCTBLIB_PATH}/)
-endif()
+add_definitions(-D_ARM_)
+find_library(
+  VCTB_LIB
+  NAMES libvCtb.so
+  PATHS ${VCTBLIB_PATH}/)
 
 
 # Bring the headers, such as Student.h into the project

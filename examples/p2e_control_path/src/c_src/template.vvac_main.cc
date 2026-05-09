@@ -120,17 +120,10 @@ int main()
     setenv("VVAC_LOG_LEVEL", "0", 1);
     setenv("RBMGR_LOG_LEVEL", "0", 1);
     setenv("RBMGR_DUMP_DATA", "1", 1);
-    char *env_vcom_sim = getenv("VCOM_TEST_DIP");
-    if (env_vcom_sim != NULL)  {
-        setenv("VMRI_WORK_MODE", "4", 1);
-        setenv("VVAC_WORK_MODE", "1", 1);
-        std::cout << "========= Run For Simulation ==========" << std::endl;
-    } else {
-        setenv("VMRI_WORK_MODE", "3", 1);
-        setenv("VVAC_WORK_MODE", "0", 1);
-        std::cout << "========= Run For Onboard Test ==========" << std::endl;
-    }
+    setenv("VMRI_WORK_MODE", "3", 1);
+    setenv("VVAC_WORK_MODE", "0", 1);
     setenv("RTL_DBG_SIZE", "128", 1);
+    std::cout << "========= Run For Onboard Test ==========" << std::endl;
     test_dpic();
     return 0;
 }
